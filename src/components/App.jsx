@@ -59,7 +59,7 @@ function App() {
         setMaxRows(row);
         setRows((prevRows) => {
             if (prevRows*26+180 > window.innerHeight) {
-                setShowToast({show: true, type: "dimension"});
+                setToastState({show: true, type: "dimension"});
                 return row;
             };
 
@@ -70,7 +70,7 @@ function App() {
         setMaxColumns(col);
         setColumns((prevColumns) => {
             if (prevColumns*26 > window.innerWidth) {
-                setShowToast({show: true, type: "dimension"});
+                setToastState({show: true, type: "dimension"});
                 return col;
             };
 
