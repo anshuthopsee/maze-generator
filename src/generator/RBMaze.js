@@ -48,8 +48,11 @@ export class RBMaze {
     draw() {
         this.canvas.width = this.cellSize*this.columns;
         this.canvas.height = this.cellSize*this.rows;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.canvas.style.background = "transparent";
         current.visited = true;
+
+        this.ctx.globalCompositeOperation = "source-over";
 
         for (let r=0; r<this.rows; r++) {
             for (let c=0; c<this.columns; c++) {
@@ -179,15 +182,16 @@ class Cell {
         let y = (this.row*this.cellSize);
 
         this.ctx.strokeStyle = "white";
-        this.ctx.fillStyle = "black";
+        this.ctx.fillStyle = "#1e1f1e";
         this.ctx.lineWidth = 2;
+
+        if (this.visited) {
+            this.ctx.fillRect(x, y, (this.cellSize), (this.cellSize));
+        };
 
         if (this.walls.topWall) this.drawTopWall(x, y, size, rows, columns);
         if (this.walls.bottomWall) this.drawBottomWall(x, y, size, rows, columns);
         if (this.walls.leftWall) this.drawLeftWall(x, y, size, rows, columns);
         if (this.walls.rightWall) this.drawRightWall(x, y, size, rows, columns);
-        // if (this.visited) {
-        //     this.ctx.fillRect(x+1, y+1, (this.cellSize)-2, (this.cellSize)-2);
-        // };
     };
 };
